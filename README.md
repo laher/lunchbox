@@ -45,8 +45,8 @@ e.g. to use the docker-compose plugin ...
 ```
 #!/usr/local/bin/valinor
 
-use github.com/laher/valinor.elv/util/dotenv
-use github.com/laher/valinor.elv/plugin/dev/docker-compose
+use github.com/laher/valinor.elv/elvish/util/dotenv
+use github.com/laher/valinor.elv/elvish/xbar/plugin/dev/docker-compose
 
 # You can use the dotenv module to manage config separately. If you want to...
 dotenv:load ../config/dc.env
