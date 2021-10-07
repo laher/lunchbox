@@ -9,18 +9,18 @@
 
 Initial goal is to build an xbar clone which is comfortable to use cross-platformly. plugins should be able to download stuff, manipulate files, run stuff, without too much custom code.
 
- * [ ] Cross-platform core utilities (a busybox-ish Go app)
-  * [ ] find HOME dir
+ * [ ] extended featureset with buysbox-style subcommands
   * [ ] File operations (mv/cp, etc)
   * [ ] HTTP
     * [ ] Make API calls
     * [ ] download stuff
-  * [ ] Get date/time. 
-    * [ ] timezone support
+  * [x] Get date/time. 
+    * [x] timezone support
   * [ ] compression/decompression tooling
  * [ ] General purpose scripting utilities
    * [x] Support for external (dotenv-style) config files
    * [ ] Open a file, directory
+   * [x] find HOME dir
  * [ ] Bundle valinor as part of an elvish interpreter
    * [ ] A sample here
    * [ ] bundling with crossbar
