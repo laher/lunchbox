@@ -1,35 +1,37 @@
-# valinor.elv - cross-platform support for elvish
+# lunchbox - batteries-included binary tools for Go shells (e.g. elvish)
 
  * general-purpose utilities which work similarly across different platforms (mainly Linux, MacOS, Windows)
- * Some go binary/library plus some elvish wrapper libraries 
- * The ability to bundle valinor along with an elvish interpreter
- * Some support for xbar/crossbar plugins
+ * Invoke them with subcommands, similar to busybox (`lunchbox http`, etc)
+ * The ability to bundle lunchbox tools within a go binary
+ * Include some elvish wrapper libraries 
+ * Provides support for xbar/lunchbar plugins
 
 ## Goals
 
-Initial goal is to build an xbar clone which is comfortable to use cross-platformly. plugins should be able to download stuff, manipulate files, run stuff, without too much custom code.
+Initial goal is to build an xbar clone which is comfortable to use cross-platformally. Elvish script writers should be able to download stuff, manipulate files, run stuff, without too much custom code for cross-platform support.
 
- * [ ] extended featureset with buysbox-style subcommands
-  * [ ] File operations (mv/cp, etc)
+ * Go-based extended featureset with buysbox-style subcommands
+  * [x] Create the binary and first elvish wrapper scripts
+  * [x] Get date/time. 
+    * [x] timezone support
+  * [ ] File operations (mv/cp/rm, etc)
   * [ ] HTTP
     * [ ] Make API calls
     * [ ] download stuff
-  * [x] Get date/time. 
-    * [x] timezone support
   * [ ] compression/decompression tooling
- * [ ] General purpose scripting utilities
+ * [ ] Cross-platform scripting utilities
    * [x] Support for external (dotenv-style) config files
-   * [ ] Open a file, directory
+   * [ ] Open a file, directory (GUI)
    * [x] find HOME dir
- * [ ] Bundle valinor as part of an elvish interpreter
-   * [ ] A sample here
-   * [ ] bundling with crossbar
- * [ ] xbar/crossbar plugin support
+ * Bundle elvish interpreter with lunchbox executable
+   * [ ] A sample usage here
+   * [ ] bundling from lunchbar too
+ * xbar/lunchbar plugin support
+   * [x] Batteries included (wrappers for lunchbox features)
    * [ ] Easy to reuse and compose together (why not have multiple docker-composes stacked into a single top-level menu?)
-   * [ ] Batteries included (wrappers for valinor features)
    * [ ] Examples for using these
 
-## Xbar/Crossbar Plugins
+## Xbar/Lunchbar Plugins
 
  * [x] Docker-compose
    * [ ] Stackable
@@ -38,15 +40,15 @@ Initial goal is to build an xbar clone which is comfortable to use cross-platfor
  * [ ] RSS
  * [ ] Some other API stuff
 
-### xbar/crossbar Usage
+### xbar/lunchbar Usage
 
 e.g. to use the docker-compose plugin ...
 
 ```
-#!/usr/local/bin/valinor
+#!/usr/local/bin/lunchbox
 
-use github.com/laher/valinor.elv/elvish/util/dotenv
-use github.com/laher/valinor.elv/elvish/xbar/plugin/dev/docker-compose
+use github.com/laher/lunchbox/elvish/util/dotenv
+use github.com/laher/lunchbox/elvish/xbar/plugin/dev/docker-compose
 
 # You can use the dotenv module to manage config separately. If you want to...
 dotenv:load ../config/dc.env
@@ -63,6 +65,6 @@ if (> (count $args) 0) {
 }
 ```
 
-## About Crossbar
+## About Lunchbar
 
-Crossbar is an experimental xbar clone which is cross-platform and bundles elvish (and valinor) support. I haven't shared it yet ...
+Lunchbar is an experimental xbar clone which is cross-platform and bundles elvish (and lunchbar) support. I haven't shared it yet ...

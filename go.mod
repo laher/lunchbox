@@ -1,4 +1,4 @@
-module github.com/laher/valinor.elv
+module github.com/laher/lunchbox
 
 go 1.17
 

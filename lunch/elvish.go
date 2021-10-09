@@ -1,4 +1,4 @@
-package valinor
+package lunch
 
 import (
 	"errors"
