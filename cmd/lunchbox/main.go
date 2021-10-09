@@ -37,8 +37,14 @@ func main() {
 			fmt.Println(err)
 			os.Exit(1)
 		}
-	case "json":
+	case "json": // deprecated .. use jq instead
 		err := lunch.JSON(os.Args[2:])
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+	case "jq":
+		err := lunch.JQ(os.Args[2:])
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
