@@ -1,4 +1,10 @@
 #!/usr/local/bin/elvish
+# <xbar.title>docker-compose</xbar.title>
+# <xbar.author>Am Laher</xbar.author>
+# <xbar.author.github>laher</xbar.author.github>
+# <xbar.desc>Show status for a given docker-compose</xbar.desc>
+# <xbar.dependencies>elvish,lunchbox,docker-compose</xbar.dependencies>
+# <xbar.os>linux,windows,darwin</xbar.os>
 
 use path
 use github.com/laher/lunchbox/elvish/util/dotenv

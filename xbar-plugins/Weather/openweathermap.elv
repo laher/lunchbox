@@ -1,4 +1,10 @@
 #!/usr/local/bin/elvish
+# <xbar.title>Openweathermap</xbar.title>
+# <xbar.author>Am Laher</xbar.author>
+# <xbar.author.github>laher</xbar.author.github>
+# <xbar.desc>Show the weather for a given location</xbar.desc>
+# <xbar.dependencies>elvish,lunchbox</xbar.dependencies>
+# <xbar.os>linux,windows,darwin</xbar.os>
 
 use github.com/laher/lunchbox/elvish/util/dotenv
 use github.com/laher/lunchbox/elvish/lunchbox
