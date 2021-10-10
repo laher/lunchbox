@@ -59,7 +59,7 @@ e.g. to use the docker-compose plugin ...
 #!/usr/local/bin/lunchbox
 
 use github.com/laher/lunchbox/elvish/util/dotenv
-use github.com/laher/lunchbox/elvish/xbar/plugin/dev/docker-compose
+use github.com/laher/lunchbox/xbar-plugins/dev/docker-compose
 
 # You can use the dotenv module to manage config separately. If you want to...
 dotenv:load ../config/dc.env
