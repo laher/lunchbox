@@ -15,7 +15,7 @@ func JQ(ctx context.Context, args []string) error {
 	var (
 		jqCmd     = flag.NewFlagSet("jq", flag.ExitOnError)
 		queryFlag = jqCmd.String("query", ".", "jq-style query (gojq variant)")
-		slurpFlag = jqCmd.Bool("slurp", false, "slurp")
+		rawFlag   = jqCmd.Bool("raw", false, "raw result (no quotes on a string)")
 	)
 	err := jqCmd.Parse(args)
 	if err != nil {
@@ -38,8 +38,14 @@ func JQ(ctx context.Context, args []string) error {
 		if err, ok := v.(error); ok {
 			return err
 		}
-		if *slurpFlag {
-
+		if *rawFlag {
+			f := newEncoder(true, 2)
+			m := &rawMarshaler{f}
+			err := m.marshal(v, os.Stdout)
+			if err != nil {
+				return err
+			}
+			//fmt.Printf("%#v\n", string(b))
 		} else {
 			fmt.Printf("%#v\n", v)
 		}

@@ -46,12 +46,6 @@ func HTTP(ctx context.Context, args []string) error {
 	}
 
 	return nil
-	/*
-		if err := httpie.Main(&httpie.Options{}); err != nil {
-			fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
-			return err
-		}
-	*/
 }
 
 func getExitStatus(statusCode int) int {
