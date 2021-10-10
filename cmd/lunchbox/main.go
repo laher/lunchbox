@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 
@@ -12,39 +13,40 @@ func main() {
 	if len(os.Args) > 1 {
 		subcommand = os.Args[1]
 	}
+	ctx := context.Background()
 	switch subcommand {
 	case "script":
-		err := lunch.ElvishRunScript(os.Args[2:])
+		err := lunch.ElvishRunScript(ctx, os.Args[2:])
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
 		}
 	case "shell":
-		err := lunch.ElvishPrompt(os.Args[2:])
+		err := lunch.ElvishPrompt(ctx, os.Args[2:])
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
 		}
 	case "date":
-		err := lunch.Date(os.Args[2:])
+		err := lunch.Date(ctx, os.Args[2:])
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
 		}
 	case "http":
-		err := lunch.HTTP(os.Args[2:])
+		err := lunch.HTTP(ctx, os.Args[2:])
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
 		}
 	case "json": // deprecated .. use jq instead
-		err := lunch.JSON(os.Args[2:])
+		err := lunch.JSON(ctx, os.Args[2:])
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
 		}
 	case "jq":
-		err := lunch.JQ(os.Args[2:])
+		err := lunch.JQ(ctx, os.Args[2:])
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)

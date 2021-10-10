@@ -1,6 +1,7 @@
 package lunch
 
 import (
+	"context"
 	"errors"
 	"flag"
 	"os"
@@ -15,7 +16,7 @@ import (
 	"src.elv.sh/pkg/shell"
 )
 
-func ElvishPrompt(args []string) error {
+func ElvishPrompt(ctx context.Context, args []string) error {
 	// prepend an empty string
 	return elvishPrompt(append([]string{""}, args...))
 }
@@ -27,7 +28,7 @@ func elvishPrompt(args []string) error {
 	return nil
 }
 
-func ElvishRunScript(args []string) error {
+func ElvishRunScript(ctx context.Context, args []string) error {
 	var scriptCmd = flag.NewFlagSet("script", flag.ExitOnError)
 
 	scriptCmd.Parse(os.Args[2:])

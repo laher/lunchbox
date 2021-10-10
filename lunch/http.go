@@ -1,13 +1,67 @@
 package lunch
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"io"
 	"net/http"
+	"os"
+
+	"github.com/nojima/httpie-go"
+	"github.com/nojima/httpie-go/flags"
+	"github.com/nojima/httpie-go/input"
+	"github.com/pkg/errors"
 )
 
-func HTTP(args []string) error {
+func HTTP(ctx context.Context, args []string) error {
+
+	// Parse flags
+	args, usage, optionSet, err := flags.Parse(args)
+	if err != nil {
+		return err
+	}
+	inputOptions := optionSet.InputOptions
+	exchangeOptions := optionSet.ExchangeOptions
+	outputOptions := optionSet.OutputOptions
+
+	// Parse positional arguments
+	in, err := input.ParseArgs(args, os.Stdin, &inputOptions)
+	if _, ok := errors.Cause(err).(*input.UsageError); ok {
+		usage.PrintUsage(os.Stderr)
+		return err
+	}
+	if err != nil {
+		return err
+	}
+
+	// Send request and receive response
+	status, err := httpie.Exchange(in, &exchangeOptions, &outputOptions)
+	if err != nil {
+		return err
+	}
+
+	if exchangeOptions.CheckStatus {
+		os.Exit(getExitStatus(status))
+	}
+
+	return nil
+	/*
+		if err := httpie.Main(&httpie.Options{}); err != nil {
+			fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
+			return err
+		}
+	*/
+}
+
+func getExitStatus(statusCode int) int {
+	if 300 <= statusCode && statusCode < 600 {
+		return statusCode / 100
+	}
+	return 0
+}
+
+func HTTPx(args []string) error {
 	var (
 		httpCmd              = flag.NewFlagSet("http", flag.ExitOnError)
 		method               = httpCmd.String("method", "GET", "method of http call")

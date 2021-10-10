@@ -2,6 +2,7 @@ package lunch
 
 import (
 	"bytes"
+	"context"
 	"flag"
 	"fmt"
 	"log"
@@ -10,7 +11,7 @@ import (
 	"github.com/lestrrat-go/strftime"
 )
 
-func Date(args []string) error {
+func Date(ctx context.Context, args []string) error {
 	var (
 		dateCmd  = flag.NewFlagSet("date", flag.ExitOnError)
 		timezone = dateCmd.String("location", "", "timezone location (e.g. UTC). Defaults to local time")

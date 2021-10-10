@@ -1,6 +1,7 @@
 package lunch
 
 import (
+	"context"
 	"encoding/json"
 	"flag"
 	"io"
@@ -9,7 +10,8 @@ import (
 	"text/template"
 )
 
-func JSON(args []string) error {
+// deprecated. see HTTPIE
+func JSON(ctx context.Context, args []string) error {
 	var (
 		jsonCmd = flag.NewFlagSet("json", flag.ExitOnError)
 		query   = jsonCmd.String("query", "{{.|json}}", "JSON query (go template syntax)")
