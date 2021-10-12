@@ -1,4 +1,7 @@
 
+
+# TODO: this is very primitive ... 
+# I think dotenv files should be parsed via luncbhox 
 fn load [f]{ 
   use file
   use str

@@ -1,7 +1,6 @@
 package lunch
 
 import (
-	"context"
 	"flag"
 	"fmt"
 	"io"
@@ -14,7 +13,11 @@ import (
 	"github.com/pkg/errors"
 )
 
-func HTTP(ctx context.Context, args []string) error {
+func init() {
+	Register("http", HTTP)
+}
+
+func HTTP(ctx Context, args []string) error {
 
 	// Parse flags
 	args, usage, optionSet, err := flags.Parse(args)

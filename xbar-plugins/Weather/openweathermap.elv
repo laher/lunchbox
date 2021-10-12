@@ -16,11 +16,11 @@ var url = "http://api.openweathermap.org/data/2.5/weather?q="$E:CITY"&units="$E:
 
 try {
   #echo $url
-  var resp = [(lunchbox:bin http GET $url)]
+  var resp = [(lunchbox:http GET $url)]
   var body = $resp[0]
   #echo $body
 
-  var desc = (echo $body | lunchbox:bin jq -raw -query ".weather[0].main")
+  var desc = (echo $body | lunchbox:jq -raw -query ".weather[0].main")
   # echo $desc
   var icon = ":question:"
   if (str:has-prefix $desc 'Cloud') {
@@ -37,10 +37,10 @@ try {
 
   echo $icon" "$desc
   echo "---"
-  echo "Temp: "(echo $body | lunchbox:bin jq -query ".main.temp")
-  echo "Humidity: "(echo $body | lunchbox:bin jq -query ".main.humidity")
-  echo "Pressure: "(echo $body | lunchbox:bin jq -query ".main.pressure")
-  echo "Visiblity: "(echo $body | lunchbox:bin jq -query ".main.visibility")
+  echo "Temp: "(echo $body | lunchbox:jq -query ".main.temp")
+  echo "Humidity: "(echo $body | lunchbox:jq -query ".main.humidity")
+  echo "Pressure: "(echo $body | lunchbox:jq -query ".main.pressure")
+  echo "Visiblity: "(echo $body | lunchbox:jq -query ".main.visibility")
 
 } except e {
   echo ':cry:'

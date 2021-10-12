@@ -17,8 +17,12 @@ use github.com/laher/lunchbox/elvish/util/dotenv
 dotenv:load env/worldtimes.env
 var locations = $E:LOCATIONS
 var format = $E:FORMAT
-lunchbox:bin date -format $format" :globe_with_meridians:"
+lunchbox:date -format $format" :globe_with_meridians:"
 echo "---"
 str:split , $locations | each [loc]{
- lunchbox:bin date -location $loc -format $format" - "$loc" | shell=ls"
+ var @parts = (str:split "/" $loc)
+ var idx = (- (count $parts) 1)
+ var shortloc = $parts[$idx]
+ lunchbox:date -location $loc -format $format" - "$shortloc
+ echo "-- "$loc
 }

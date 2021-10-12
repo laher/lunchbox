@@ -1,7 +1,6 @@
 package lunch
 
 import (
-	"context"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -10,7 +9,11 @@ import (
 	"github.com/itchyny/gojq"
 )
 
-func JQ(ctx context.Context, args []string) error {
+func init() {
+	Register("jq", JQ)
+}
+
+func JQ(ctx Context, args []string) error {
 
 	var (
 		jqCmd     = flag.NewFlagSet("jq", flag.ExitOnError)
@@ -29,7 +32,7 @@ func JQ(ctx context.Context, args []string) error {
 	if err := json.NewDecoder(os.Stdin).Decode(&input); err != nil {
 		return err
 	}
-	iter := query.RunWithContext(ctx, input) // or query.RunWithContext
+	iter := query.RunWithContext(ctx.Ctx, input) // or query.RunWithContext
 	for {
 		v, ok := iter.Next()
 		if !ok {
