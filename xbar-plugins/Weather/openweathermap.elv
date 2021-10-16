@@ -26,7 +26,9 @@ try {
   if (str:has-prefix $desc 'Cloud') {
     icon = ":cloud:"
   } elif (str:has-prefix $desc 'Sun') {
-    icon = ":sun:"
+    icon = ":sunglasses:"
+  } elif (str:has-prefix $desc 'Clear') {
+    icon = ":sunny:"
   } elif (str:has-prefix $desc 'Rain') {
     icon = ":umbrella:"
   } elif (str:has-prefix $desc 'Cyclone') {
@@ -40,7 +42,7 @@ try {
   echo "Temp: "(echo $body | lunchbox:jq -query ".main.temp")
   echo "Humidity: "(echo $body | lunchbox:jq -query ".main.humidity")
   echo "Pressure: "(echo $body | lunchbox:jq -query ".main.pressure")
-  echo "Visiblity: "(echo $body | lunchbox:jq -query ".main.visibility")
+  echo "Visiblity: "(echo $body | lunchbox:jq -query ".visibility")
 
 } except e {
   echo ':cry:'

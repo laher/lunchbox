@@ -8,16 +8,23 @@
 
 use str
 use github.com/laher/lunchbox/elvish/lunchbox
-use github.com/laher/lunchbox/elvish/util/dotenv
 
 # load some environment variables
 # example:
 # LOCATIONS=UTC,Europe/London,America/Los_Angeles
 # FORMAT="%a %d %b %H:%M" 
-dotenv:load env/worldtimes.env
+lunchbox:dotenv env/worldtimes.env
 var locations = $E:LOCATIONS
+if (eq $locations "") {
+  locations = "UTC,Europe/London,America/Los_Angeles" 
+}
 var format = $E:FORMAT
-lunchbox:date -format $format" :globe_with_meridians:"
+if (eq $format "") {
+  format = "%a %d %b %H:%M" 
+}
+#echo $format
+loc = (lunchbox:date -format "%a %H:%M")
+echo $loc" :globe_with_meridians:"
 echo "---"
 str:split , $locations | each [loc]{
  var @parts = (str:split "/" $loc)

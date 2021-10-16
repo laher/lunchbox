@@ -7,7 +7,7 @@
 # <xbar.os>linux,windows,darwin</xbar.os>
 
 use path
-use github.com/laher/lunchbox/elvish/util/dotenv
+use github.com/laher/lunchbox/elvish/lunchbox
 
 fn dcplugin [WD scriptName]{
   cd $WD
@@ -23,7 +23,11 @@ fn dcplugin [WD scriptName]{
 # load environment 
 # at the minimum, just specify WD (working directory for docker-compose file)
 # may need to also adjust PATH
-dotenv:load env/dc.env
+lunchbox:dotenv env/dc.env
+
+if (not-eq $E:PATH_EXTRA "") {
+  set-env PATH $E:PATH":"$E:PATH_EXTRA 
+}
 cd $E:WD
 
 if (> (count $args) 0) {
