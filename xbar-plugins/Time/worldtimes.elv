@@ -12,19 +12,19 @@ use github.com/laher/lunchbox/elvish/lunchbox
 # load some environment variables
 # example:
 # LOCATIONS=UTC,Europe/London,America/Los_Angeles
-# FORMAT="%a %d %b %H:%M" 
+# FORMAT="%a %d %b %H:%M"
 lunchbox:dotenv env/worldtimes.env
 var locations = $E:LOCATIONS
 if (eq $locations "") {
-  locations = "UTC,Europe/London,America/Los_Angeles" 
+  locations = "UTC,Europe/London,America/Los_Angeles"
 }
 var format = $E:FORMAT
 if (eq $format "") {
-  format = "%a %d %b %H:%M" 
+  format = "%a %d %b %H:%M"
 }
 #echo $format
 loc = (lunchbox:date -format "%a %H:%M")
-echo $loc" :globe_with_meridians:"
+echo ":globe_with_meridians: "$loc
 echo "---"
 str:split , $locations | each [loc]{
  var @parts = (str:split "/" $loc)
