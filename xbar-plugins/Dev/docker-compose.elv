@@ -20,6 +20,10 @@ fn dcplugin [WD scriptName]{
   var name = (path:base $WD)
   echo ":whale: "$name" "(count $up)"/"(count $down)
   echo "---"
+  echo ":arrow_up: dc up | terminal=true shell='"$scriptName"' param1=v-dcup"
+  echo ":grey_question: dc ps | terminal=true shell='"$scriptName"' param1=v-dcps"
+  echo ":arrow_down: dc down| terminal=true shell='"$scriptName"' param1=v-dcdn"
+  echo "---"
   echo "Running services"
   echo (str:join "\n" $up)
   echo "Stopped services"

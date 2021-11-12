@@ -10,6 +10,7 @@ use github.com/laher/lunchbox/elvish/util/dotenv
 use github.com/laher/lunchbox/elvish/lunchbox
 use str
 
+# echo $E:PATH
 dotenv:load "env/openweathermap.env"
 
 var url = "http://api.openweathermap.org/data/2.5/weather?q="$E:CITY"&units="$E:UNITS"&appid="$E:API_KEY

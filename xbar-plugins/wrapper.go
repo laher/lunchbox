@@ -24,3 +24,7 @@ func List(ctx context.Context) ([]string, error) {
 	}
 	return pluginList, nil
 }
+
+func Open(ctx context.Context, filename string) (fs.File, error) {
+	return plugins.Open(filename)
+}

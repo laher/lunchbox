@@ -59,7 +59,9 @@ func (e *encoder) encode(v interface{}) {
 		panic(fmt.Sprintf("invalid value: %v", v))
 	}
 	if e.w.Len() > 8*1024 {
-		e.out.Write(e.w.Bytes())
+		if _, err := e.out.Write(e.w.Bytes()); err != nil {
+			panic(err)
+		}
 		e.w.Reset()
 	}
 }
